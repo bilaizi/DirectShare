@@ -3,7 +3,6 @@ package com.example.bilaizi.directshare;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toolbar;
@@ -24,19 +23,16 @@ public class MainActivity extends Activity {
         setActionBar((Toolbar) findViewById(R.id.toolbar));
         mEditBody = (EditText) findViewById(R.id.body);
         mButton = (Button) findViewById(R.id.share);
-        mButton.setOnClickListener(mOnClickListener);
+        mButton.setOnClickListener(
+                view -> {
+                    switch (view.getId()) {
+                        case R.id.share:
+                            share();
+                            break;
+                    }
+                }
+        );
     }
-
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.share:
-                    share();
-                    break;
-            }
-        }
-    };
 
     /**
      * Emits a sample share {@link Intent}.

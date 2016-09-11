@@ -47,7 +47,14 @@ public class SendMessageActivity extends Activity {
             return;
         }
         // Bind event handlers.
-        findViewById(R.id.send).setOnClickListener(mOnClickListener);
+        findViewById(R.id.send).setOnClickListener(
+                view -> {
+                    switch (view.getId()) {
+                        case R.id.send:
+                            send();
+                            break;
+                    }
+                });
         // Set up the UI.
         prepareUi();
         // The contact ID will not be passed on when the user clicks on the app icon rather than any
@@ -112,16 +119,6 @@ public class SendMessageActivity extends Activity {
         startActivityForResult(intent, REQUEST_SELECT_CONTACT);
     }
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.send:
-                    send();
-                    break;
-            }
-        }
-    };
 
     /**
      * Pretends to send the text to the contact. This only shows a dummy message.
